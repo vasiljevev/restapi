@@ -2,7 +2,7 @@ openapi: '3.0.2'
 info:
   description: 'Интеграционный сервис АИС КИС Баланс'
   title: Omnuis-API astu specificatioin
-  version: '2.0'
+  version: '3.1'
   contact:
     email: e-vasilyev@it-serv.ru
     name: Поддержка API
