@@ -1,0 +1,499 @@
+openapi: '3.0.2'
+info:
+  description: 'Интеграционный сервис АИС КИС Баланс'
+  title: Omnuis-API astu specificatioin
+  version: '2.0'
+  contact:
+    email: e-vasilyev@it-serv.ru
+    name: Поддержка API
+    url: https://www.example.com/support
+servers:
+  - url: https://{baseUrl}/api
+    description: основной интеграционный сервис
+tags:
+  - name: astu
+    description: 'АИС Карта Мощности'
+
+paths:
+  /astu/search:
+    description: 'Запрос поиска объектов по заданному сервису'
+    post:
+      tags:
+        - astu
+      summary: 'Запрос поиска объектов'
+      operationId: SearchObjects
+      description: 'Запрос поиска объектов по заданному сервису'
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        required: true
+        description: Параметры обращения к сервису - определяются проектным решением для каждого сервиса индивидуально
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EndDevice_request_body"
+      responses:
+        '200':
+          description: результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Consumers'
+        '400':
+          description: не верные параметры сервиса или объекта запроса
+        '429':
+          description: АСТУ сформировало запросов больше чем описано в требованиях
+        '204':
+          description: витрину с данными не заполена или изменений нет
+        '408':
+          description: JSON формируется больше 1  мин
+        '500':
+          description: Server Error
+        '409':
+          description: Conflict
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+  /astu/process:
+    description: Отправка объектов на обработку
+    post:
+      tags:
+      - astu
+      summary: Отправка объектов на обработку
+      operationId: ProcessObjects
+      description: Отправка объектов на обработку
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        required: true
+        description: Параметры обращения к сервису - определяются проектным решением для каждого сервиса индивидуально
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consumers_request_body"
+      responses:
+        '200':
+          description: результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Consumers'
+        '400':
+          description: не верные параметры сервиса или объекта запроса
+        '429':
+          description: АСТУ сформировало запросов больше чем описано в требованиях
+        '204':
+          description: витрину с данными не заполена или изменений нет
+        '408':
+          description: JSON формируется больше 1  мин
+        '500':
+          description: Server Error
+        '409':
+          description: Conflict
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+  /astu/processing-statuses:
+    description: Запрос статусов обработки объектов
+    post:
+      tags:
+      - astu
+      summary: Запрос статусов обработки объектов
+      operationId: GetProcessingStatuses
+      description: Запрос статусов обработки объектов
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      requestBody:
+        required: true
+        description: Параметры обращения к сервису - определяются проектным решением для каждого сервиса индивидуально
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consumers_request_body"
+      responses:
+        '200':
+          description: результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Consumers'
+        '400':
+          description: не верные параметры сервиса или объекта запроса
+        '429':
+          description: АСТУ сформировало запросов больше чем описано в требованиях
+        '204':
+          description: витрину с данными не заполена или изменений нет
+        '408':
+          description: JSON формируется больше 1  мин
+        '500':
+          description: Server Error
+        '409':
+          description: Conflict
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+      Consumers: 
+        type: array
+        items: 
+          type: object
+          properties: 
+            ActionType: 
+              type: string
+              example: INSERT
+            ConsumerId: 
+              type: string
+              example: 345435345
+            ConsumerName: 
+              type: string
+              example: Голованова Надежда Фёдоровна
+            ConsumerType: 
+              type: string
+              example: ФЛ
+            Contract: 
+              type: string
+              example: 10-132344
+            RequetsNumber: 
+              type: string
+              example: МС/103/13234234/12
+            ServiceLocationId: 
+              type: string
+              example: 23244322
+            Name: 
+              type: string
+              example: обл Московская , р-н Истринский, г Истра, д.1
+            OrganizationId: 
+              type: string
+              example: 2308
+            ObjectStatus: 
+              type: string
+              example: Действующий
+            FiasId: 
+              type: string
+              example: b749c3e6-39df-45ae-918f-a5e6c8abb54e
+            Address: 
+              type: string
+              example: обл Московская , р-н Истринский, г Истра, д.1
+            Region: 
+              type: string
+              example: Московская обл.
+            District: 
+              type: string
+              example: Истринский р-н
+            City: 
+              type: string
+              example: г. Истра
+            Street: 
+              type: string
+              example: ул. Усадебная
+            House: 
+              type: string
+              example: д.1 
+            Room: 
+              type: string
+              example: кв. 47
+            Remark: 
+              type: string
+              example: Примечание к адресу
+            Cadaster: 
+              type: string
+              example: 23:12323:11
+            MaxPower: 
+              type: string
+              example: 0.23
+            ReliabilityCategory: 
+              type: string
+              example: 3
+            Phone: 
+              type: string
+              example: 89629991999
+            ResidentsCount: 
+              type: string
+              example: 12
+            ServiceDispCategory: 
+              type: string
+              example: Частный дом
+            NumOfStoreys: 
+              type: string
+              example: 2
+            StandByCapacity: 
+              type: string
+              example: 0
+            Significance: 
+              type: string
+              example: 33
+            ServiceContingencyCatagory: 
+              type: string
+              example: Непроизводственные потребители
+            InChargeFullName: 
+              type: string
+              example: Иванов И.И.
+            EmergencyPowerReserve: 
+              type: string
+              example: 0.22
+            TechnoPowerReserve: 
+              type: string
+              example: 265
+            TechnoPowerReserveDuration: 
+              type: string
+              example: number
+            Geometry: 
+              $ref: '#/components/schemas/Geometry'
+            UsagePoints: 
+              type: array
+              items: 
+                type: object
+                properties: 
+                  ActionType: 
+                    type: string
+                    example: INSERT
+                  UsagePointID: 
+                    type: string
+                    example: 1233455
+                  Name: 
+                    type: string
+                    example: Описание точки поставки
+                  OrganizationID: 
+                    type: string
+                    example: 2308
+                  IsSDP: 
+                    type: boolean
+                    example: true
+                  VoltageLevel: 
+                    type: string
+                    example: НН
+                  VoltageClass: 
+                    type: string
+                    example: 0.4
+                  ServiceLocationID: 
+                    type: string
+                    example: 1233443
+                  SubstationCodeTm: 
+                    type: string
+                    example: TP010-00032333
+                  SubstationName: 
+                    type: string
+                    example: ТП 3004
+                  TransformerName: 
+                    type: string
+                    example: Т-1
+                  BayCodeTm: 
+                    type: string
+                    example: TP010-00032333-16-01-01
+                  BayName: 
+                    type: string
+                    example: яч. 1 ф. ВЛ 0,4 кВ
+                  LineCodeTm: 
+                    type: string
+                    example: VN004-00003234
+                  LineName: 
+                    type: string
+                    example: ВЛ 0,4 кВ 1
+                  TowerCodeTm: 
+                    type: string
+                    example: VN004-00003234-001-1001
+                  TowerName: 
+                    type: string
+                    example: Опора 1
+                  Remark: 
+                    type: string
+                    example: На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004
+                  Geometry: 
+                    $ref: '#/components/schemas/Geometry'
+      Geometry: 
+        type: object
+        properties: 
+          Type: 
+            type: string
+            example: Point
+          Coordinates: 
+            type: array
+            items: 
+              type: object
+              properties: 
+                X: 
+                  type: number
+                  example: 54,547856
+                Y: 
+                  type: number
+                  example: 63,547856
+      Consumers_request_body:
+        description: Параметры тела запроса для сервиса Consumers
+        type: object
+        properties:
+          Service:
+            type: object
+            properties:
+              ServiceType:
+                type: string
+                example: Consumers
+                description: Имя запрашиваемого сервиса
+              Filial:
+                type: string
+                example: 23
+                description: Идентификатор филиала из справочника КИС Баланс
+              Area:
+                type: array
+                items:
+                  type: string
+                  example: 23
+                  description: Список районов из справочника КИС Баланс
+          Params:
+            type: object
+            properties:
+              type:
+                type: string
+                example: ФЛ
+                description: Тип потребителя (ФЛ, ЮЛ) из справочника КИС Баланс
+              Date_begin:
+                type: string
+                example: 2023-03-01
+                description: Начальная дата анализа данных по потребителям
+              Date_end:
+                type: string
+                example: 2023-03-01
+                description: Конечная дата анализа данных по потребителям
+              ConsumerID:
+                type: array
+                items:
+                  type: string
+                  example: 10000012, 100000013
+                  description: Массив идентификаторов потребителей
+              ServiceLocationID:
+                type: array
+                items:
+                  type: string
+                  example: 20000012, 200000013
+                  description: Массив идентифкаторов ЭПУ
+              SystemState:
+                type: array
+                items:
+                  type: string
+                  example: Действующий, Проект
+                  description: Массив идентификаторо статусов для ЭПУ
+      Disconnection_Reconnection_request_body:
+        description: Параметры тела запроса для сервиса Disconnection/Reconnection
+        type: object
+        properties:
+          Service:
+            type: object
+            properties:
+              ServiceType:
+                type: string
+                example: Disconnection_Reconnection_list
+                description: Имя запрашиваемого сервиса
+              Filial:
+                type: string
+                example: 23
+                description: Идентификатор филиала из справочника КИС Баланс
+              Area:
+                type: array
+                items:
+                  type: string
+                  example: 23
+                  description: Список районов из справочника КИС Баланс
+          Params:
+            type: object
+            properties:
+              Date_begin:
+                type: string
+                example: 2023-03-01
+                description: Начальная дата анализа данных по потребителям
+              Date_end:
+                type: string
+                example: 2023-03-01
+                description: Начальная дата анализа данных по потребителям
+      EndDevice_request_body:
+        description: Параметры тела запроса для сервиса EndDevice
+        type: object
+        properties:
+          Service:
+            type: object
+            properties:
+              ServiceType:
+                type: string
+                example: EndDevice
+                description: Имя запрашиваемого сервиса
+              Filial:
+                type: string
+                example: 23
+                description: Идентификатор филиала из справочника КИС Баланс
+              Area:
+                type: array
+                items:
+                  type: string
+                  example: 23
+                  description: Список районов из справочника КИС Баланс
+          Params:
+            type: object
+            properties:
+              ConsumptionType:
+                type: string
+                example: flow
+                description: Вид учета (flow - технический, estim - коммерческий)
+              DeviceType:
+                type: array
+                items:
+                  type: string
+                  example: 1
+                  description: Тип прибора (1 - интегральный счетчик 2 - интервальный счетчик 3 - ТТ 4 - ТН)
+              Date_begin:
+                type: string
+                example: 2023-03-01
+                description: Начальная дата анализа данных по потребителям
+              Date_end:
+                type: string
+                example: 2023-03-01
+                description: Начальная дата анализа данных по потребителям
+              UsagePointID:
+                type: array
+                description: Массив идентификаторов точек поставки
+                items:
+                  type: string
+                  example: 22222222
+              DeviceIdID:
+                type: array
+                description: Массив идентификаторов приборов учета
+                items:
+                  type: string
+                  example: 10000012
+              SystemState:
+                type: array
+                items:
+                  type: string
+                  example: Действующий, Проект
+                  description: Массив идентификаторо статусов для ЭПУ
+  parameters:
+      limit:
+        name: limit
+        in: query
+        description: кол-во элементов от начала отсчета
+        required: false
+        example: 0
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
+      offset:
+        name: offset
+        in: query
+        description: индекс начала отчета
+        required: false
+        example: 0
+        schema:
+          type: integer
+          format: int32
+          minimum: 0
