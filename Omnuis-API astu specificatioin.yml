@@ -2,7 +2,7 @@ openapi: '3.0.2'
 info:
   description: 'Интеграционный сервис АИС КИС Баланс'
   title: Omnuis-API astu specificatioin
-  version: '3.0'
+  version: '2.0'
   contact:
     email: e-vasilyev@it-serv.ru
     name: Поддержка API
@@ -15,7 +15,7 @@ tags:
     description: 'АИС Карта Мощности'
 
 paths:
-  /astu/search:
+  /astu/export:
     description: 'Запрос поиска объектов по заданному сервису'
     post:
       tags:
@@ -58,7 +58,7 @@ paths:
           description: Not Found
         '401':
           description: Unauthorized
-  /astu/process:
+  /astu/import:
     description: Отправка объектов на обработку
     post:
       tags:
@@ -66,16 +66,13 @@ paths:
       summary: Отправка объектов на обработку
       operationId: ProcessObjects
       description: Отправка объектов на обработку
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/offset'
       requestBody:
         required: true
         description: Параметры обращения к сервису - определяются проектным решением для каждого сервиса индивидуально
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Consumers_request_body"
+              $ref: "#/components/schemas/ServiceLocation"
       responses:
         '200':
           description: результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально
@@ -84,7 +81,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Consumers'
+                  $ref: '#/components/schemas/ServiceLocation'
         '400':
           description: не верные параметры сервиса или объекта запроса
         '429':
@@ -101,52 +98,54 @@ paths:
           description: Not Found
         '401':
           description: Unauthorized
-  /astu/processing-statuses:
-    description: Запрос статусов обработки объектов
-    post:
-      tags:
-      - astu
-      summary: Запрос статусов обработки объектов
-      operationId: GetProcessingStatuses
-      description: Запрос статусов обработки объектов
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/offset'
-      requestBody:
-        required: true
-        description: Параметры обращения к сервису - определяются проектным решением для каждого сервиса индивидуально
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Consumers_request_body"
-      responses:
-        '200':
-          description: результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Consumers'
-        '400':
-          description: не верные параметры сервиса или объекта запроса
-        '429':
-          description: АСТУ сформировало запросов больше чем описано в требованиях
-        '204':
-          description: витрину с данными не заполена или изменений нет
-        '408':
-          description: JSON формируется больше 1  мин
-        '500':
-          description: Server Error
-        '409':
-          description: Conflict
-        '404':
-          description: Not Found
-        '401':
-          description: Unauthorized
+#  /astu/processing-statuses:
+#    description: Запрос статусов обработки объектов
+#    post:
+#      tags:
+#      - astu
+#      summary: Запрос статусов обработки объектов
+#      operationId: GetProcessingStatuses
+#      description: Запрос статусов обработки объектов
+#      parameters:
+#        - $ref: '#/components/parameters/limit'
+#        - $ref: '#/components/parameters/offset'
+#      requestBody:
+#        required: true
+#        description: Параметры обращения к сервису - определяются проектным решением для каждого сервиса индивидуально
+#        content:
+#          application/json:
+#            schema:
+#              $ref: "#/components/schemas/Consumers_request_body"
+#      responses:
+#        '200':
+#          description: результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/Consumers'
+#        '400':
+#          description: не верные параметры сервиса или объекта запроса
+#        '429':
+#          description: АСТУ сформировало запросов больше чем описано в требованиях
+#        '204':
+#          description: витрину с данными не заполена или изменений нет
+#        '408':
+#          description: JSON формируется больше 1  мин
+#        '500':
+#          description: Server Error
+#        '409':
+#          description: Conflict
+#        '404':
+#          description: Not Found
+#        '401':
+#          description: Unauthorized
+#
 components:
   schemas:
-      Consumers: 
+      Consumers:
+        description: 2.1 Сервис по запросу ПТК АСТУ возвращает данные из КИС Баланс о созданных / измененных / удаленных объектах потребителя за заданный период времени по заданным районам, типам потребителей
         type: array
         items: 
           type: object
@@ -313,7 +312,272 @@ components:
                     example: На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004
                   Geometry: 
                     $ref: '#/components/schemas/Geometry'
-      Geometry: 
+      Disconnection_Reconnection:
+        description: 4.1 Сервис по запросу ПТК АСТУ возвращает из КИС Баланс данные о введенных ограничениях / возобновлении подачи ээ по указанным районам, созданные / измененные / удаленные за период Date_begin и Date_end
+        type: object
+        properties: 
+          DisconnectionList: 
+            description: Массив данных по отключениям
+            type: array
+            items: 
+              type: object
+              properties: 
+                ActionType: 
+                  type: string
+                  example: string
+                DiscconectionId: 
+                  type: string
+                  example: string
+                Description: 
+                  type: string
+                  example: string
+                Type: 
+                  type: string
+                  example: string
+                Reason: 
+                  type: string
+                  example: string
+                Date: 
+                  type: string
+                  example: date
+                Area: 
+                  type: string
+                  example: string
+                Initiator: 
+                  type: string
+                  example: string
+                Performer: 
+                  type: string
+                  example: string
+                ConsumerId: 
+                  type: string
+                  example: string
+                UsagePoints: 
+                  type: array
+                  items: 
+                    type: object
+                    properties: 
+                      ActionType: 
+                        type: string
+                        example: string
+                      Name: 
+                        type: string
+                        example: string
+                      OrganizationID: 
+                        type: string
+                        example: string
+                      IsSDP: 
+                        type: string
+                        example: boolean
+                      VoltageLevel: 
+                        type: string
+                        example: string
+                      VoltageClass: 
+                        type: string
+                        example: string
+                      ServiceLocationID: 
+                        type: string
+                        example: string
+                      SubstationCodeTm: 
+                        type: string
+                        example: string
+                      SubstationName: 
+                        type: string
+                        example: string
+                      TransformerName: 
+                        type: string
+                        example: string
+                      BayCodeTm: 
+                        type: string
+                        example: string
+                      BayName: 
+                        type: string
+                        example: string
+                      LineCodeTm: 
+                        type: string
+                        example: string
+                      LineName: 
+                        type: string
+                        example: string
+                      TowerCodeTm: 
+                        type: string
+                        example: string
+                      TowerName: 
+                        type: string
+                        example: string
+                      Remark: 
+                        type: string
+                        example: string
+                      geometry: 
+                        $ref: '#/components/schemas/Geometry'
+          ReconnectionList: 
+              description: Массив данных по возобновлению
+              type: array
+              items: 
+                type: object
+                properties: 
+                  ActionType: 
+                    type: string
+                    example: string
+                  ReconnectionId: 
+                    type: string
+                    example: string
+                  DiscconectionId: 
+                    type: string
+                    example: string
+                  Description: 
+                    type: string
+                    example: string
+                  Type: 
+                    type: string
+                    example: string
+                  Reason: 
+                    type: string
+                    example: string
+                  Date: 
+                    type: string
+                    example: date
+                  Area: 
+                    type: string
+                    example: string
+                  Initiator: 
+                    type: string
+                    example: string
+                  Performer: 
+                    type: string
+                    example: string
+                  ConsumerId: 
+                    type: string
+                    example: string
+                  UsagePoints: 
+                    type: array
+                    items: 
+                      type: object
+                      properties: 
+                        ActionType: 
+                          type: string
+                          example: string
+                        Name: 
+                          type: string
+                          example: string
+                        OrganizationID: 
+                          type: string
+                          example: string
+                        IsSDP: 
+                          type: string
+                          example: boolean
+                        VoltageLevel: 
+                          type: string
+                          example: string
+                        VoltageClass: 
+                          type: string
+                          example: string
+                        ServiceLocationID: 
+                          type: string
+                          example: string
+                        SubstationCodeTm: 
+                          type: string
+                          example: string
+                        SubstationName: 
+                          type: string
+                          example: string
+                        TransformerName: 
+                          type: string
+                          example: string
+                        BayCodeTm: 
+                          type: string
+                          example: string
+                        BayName: 
+                          type: string
+                          example: string
+                        LineCodeTm: 
+                          type: string
+                          example: string
+                        LineName: 
+                          type: string
+                          example: string
+                        TowerCodeTm: 
+                          type: string
+                          example: string
+                        TowerName: 
+                          type: string
+                          example: string
+                        Remark: 
+                          type: string
+                          example: string
+                        geometry: 
+                          $ref: '#/components/schemas/Geometry'
+      EndDevices:
+          description: 5.1 Сервис по запросу ПТК АСТУ получает из КИС Баланс перечень приборов учета (коммерческого и технического учета) по принадлежности к орг.структуре, типу созданных / измененных / удаленных за заданный промежуток времени
+          type: array
+          items: 
+            type: object
+            properties: 
+              ActionType: 
+                type: string
+                example: string
+              EndDeviceId: 
+                type: string
+                example: string
+              Name: 
+                type: string
+                example: string
+              OrganizationID: 
+                type: string
+                example: string
+              DeviceType: 
+                type: string
+                example: string
+              SerialNumber: 
+                type: string
+                example: string
+              isAMR: 
+                type: string
+                example: boolean
+              IsCommercial: 
+                type: string
+                example: boolean
+              DeviceStatus: 
+                type: string
+                example: string
+              BelongingType: 
+                type: string
+                example: string
+              UsagePointID: 
+                type: string
+                example: string
+              SubstationCodeTM: 
+                type: string
+                example: string
+              BayCodeTM: 
+                type: string
+                example: string
+              LineCodeTM: 
+                type: string
+                example: string
+              TowerCodeTM: 
+                type: string
+                example: string
+              DeviceLocation: 
+                type: string
+                example: string
+              geometry: 
+                $ref: '#/components/schemas/Geometry'
+              MeasurePoints: 
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id: 
+                      type: string
+                      example: string
+                    description: 
+                      type: string
+                      example: string
+                    type: 
+                      type: string
+                      example: string 
+      Geometry:
         type: object
         properties: 
           Type: 
@@ -330,83 +594,41 @@ components:
                 Y: 
                   type: number
                   example: 63,547856
-      Consumers_request_body:
-        description: Параметры тела запроса для сервиса Consumers
+      Service:
         type: object
+        required:
+          - ServiceType
+          - Filial
+          - Area
         properties:
-          Service:
-            type: object
-            properties:
-              ServiceType:
-                type: string
-                example: Consumers
-                description: Имя запрашиваемого сервиса
-              Filial:
-                type: string
-                example: 23
-                description: Идентификатор филиала из справочника КИС Баланс
-              Area:
-                type: array
-                items:
-                  type: string
-                  example: 23
-                  description: Список районов из справочника КИС Баланс
-          Params:
-            type: object
-            properties:
-              type:
-                type: string
-                example: ФЛ
-                description: Тип потребителя (ФЛ, ЮЛ) из справочника КИС Баланс
-              Date_begin:
-                type: string
-                example: 2023-03-01
-                description: Начальная дата анализа данных по потребителям
-              Date_end:
-                type: string
-                example: 2023-03-01
-                description: Конечная дата анализа данных по потребителям
-              ConsumerID:
-                type: array
-                items:
-                  type: string
-                  example: 10000012, 100000013
-                  description: Массив идентификаторов потребителей
-              ServiceLocationID:
-                type: array
-                items:
-                  type: string
-                  example: 20000012, 200000013
-                  description: Массив идентифкаторов ЭПУ
-              SystemState:
-                type: array
-                items:
-                  type: string
-                  example: Действующий, Проект
-                  description: Массив идентификаторо статусов для ЭПУ
+          ServiceType:
+            type: string
+            example: Disconnection_Reconnection_list
+            description: Имя запрашиваемого сервиса Consumers, Disconnection_Reconnection_list, или EndDevices
+          Filial:
+            type: string
+            example: 23
+            description: Идентификатор филиала из справочника КИС Баланс
+          Area:
+            type: array
+            items:
+              type: string
+              example: 23
+              description: Список районов из справочника КИС Баланс
       Disconnection_Reconnection_request_body:
-        description: Параметры тела запроса для сервиса Disconnection/Reconnection
+        description: 4.1 Параметры тела запроса для сервиса Disconnection/Reconnection
         type: object
+        required:
+          - Service
+          - Params
         properties:
           Service:
-            type: object
-            properties:
-              ServiceType:
-                type: string
-                example: Disconnection_Reconnection_list
-                description: Имя запрашиваемого сервиса
-              Filial:
-                type: string
-                example: 23
-                description: Идентификатор филиала из справочника КИС Баланс
-              Area:
-                type: array
-                items:
-                  type: string
-                  example: 23
-                  description: Список районов из справочника КИС Баланс
+            $ref: '#/components/schemas/Service'
           Params:
             type: object
+            required:
+              - Date_begin
+              - Date_end
             properties:
               Date_begin:
                 type: string
@@ -417,26 +639,14 @@ components:
                 example: 2023-03-01
                 description: Начальная дата анализа данных по потребителям
       EndDevice_request_body:
-        description: Параметры тела запроса для сервиса EndDevice
+        description: 5.1 Параметры тела запроса для сервиса EndDevice
         type: object
+        required:
+          - Service
+          - Params
         properties:
           Service:
-            type: object
-            properties:
-              ServiceType:
-                type: string
-                example: EndDevice
-                description: Имя запрашиваемого сервиса
-              Filial:
-                type: string
-                example: 23
-                description: Идентификатор филиала из справочника КИС Баланс
-              Area:
-                type: array
-                items:
-                  type: string
-                  example: 23
-                  description: Список районов из справочника КИС Баланс
+            $ref: '#/components/schemas/Service'
           Params:
             type: object
             properties:
@@ -476,6 +686,149 @@ components:
                   type: string
                   example: Действующий, Проект
                   description: Массив идентификаторо статусов для ЭПУ
+      Consumers_request_body:
+        description: 2.1 Параметры тела запроса для сервиса Consumers
+        type: object
+        required:
+          - Service
+          - Params
+        properties:
+          Service:
+            $ref: '#/components/schemas/Service'
+          Params:
+            type: object
+            properties:
+              type:
+                type: string
+                example: ФЛ
+                description: Тип потребителя (ФЛ, ЮЛ) из справочника КИС Баланс
+              Date_begin:
+                type: string
+                example: 2023-03-01
+                description: Начальная дата анализа данных по потребителям
+              Date_end:
+                type: string
+                example: 2023-03-01
+                description: Конечная дата анализа данных по потребителям
+              ConsumerID:
+                type: array
+                items:
+                  type: string
+                  example: 10000012, 100000013
+                  description: Массив идентификаторов потребителей
+              ServiceLocationID:
+                type: array
+                items:
+                  type: string
+                  example: 20000012, 200000013
+                  description: Массив идентифкаторов ЭПУ
+              SystemState:
+                type: array
+                items:
+                  type: string
+                  example: Действующий, Проект
+                  description: Массив идентификаторо статусов для ЭПУ
+      ServiceLocation:
+        type: object
+        description: 3.1 используется для передачи в КИС Баланс из ПТК АСТУ данных по скорректированному местоположению ЭПУ потребителя
+        required:
+          - ConsumerId
+          - ServiceLocationId
+          - Geometry
+          - Service
+        properties:
+          Service:
+            $ref: '#/components/schemas/Service'
+          ConsumerId: 
+            type: string
+            description: Идентификатор Потребителя КИС Баланс
+            example: 4564566
+          ServiceLocationId: 
+            type: string
+            description: Идентификатор ЭПУ КИС Баланс
+            example: 1233443
+          Address:
+            description: Адресная информация
+            type: object
+            properties: 
+              Address: 
+                type: string
+                description: Полный адрес (до дома)
+                example: обл Московская , р-н Истринский, г Истра, д.1 
+              Region: 
+                type: string
+                description: Регион
+                example: Московская обл.
+              District: 
+                type: string
+                example: Истринский р-н
+                description: Район
+              City: 
+                type: string
+                description: Город
+                example: г. Истра
+              Street: 
+                type: string
+                description: Улица
+                example: ул. Усадебная
+              House: 
+                type: string
+                description: Дом
+                example: д.1 
+          Cadatster: 
+            type: object
+            properties: 
+              Cadaster: 
+                type: string
+                description: Кадастровый номер
+                example: 77:232423443:14
+          Geometry: 
+            $ref: '#/components/schemas/Geometry'
+      UsagePoint:
+        type: object
+        description: 3.2 Сервис используется для передачи в КИС Баланс из ПТК АСТУ данных по скорректированной привязке потребителя к объекту электросети
+        required:
+          - UsagePointID
+          - SubstationCodeTm
+          - Service
+        properties:
+          Service:
+            $ref: '#/components/schemas/Service'
+          UsagePointID: 
+            type: string
+            example: 4564566
+            description: Идентификатор Точки поставки в КИС Баланс
+          ServiceLocationID: 
+            type: string
+            example: 1233443
+            description: Идентификатор ЭПУ КИС Баланс
+          SubstationCodeTm: 
+            type: string
+            example: TP010-00032333
+            description: Код ТМ СУПА питающей подстанции (ТП/РП)
+          TransformerName: 
+            type: string
+            example: Т-1
+            description: Наименование питающего трансформатора
+          BayCodeTm: 
+            type: string
+            example: TP010-00032333-16-01-01
+            description: Код КМ СУПА ячейки присоединения питающего фидера
+          BayName: 
+            type: string
+            example: яч. 1 ф. ВЛ 0,4 кВ
+          LineCodeTm: 
+            type: string
+            example: VN004-00003234
+          LineName: 
+            type: string
+            example: ВЛ 0,4 кВ 1
+          TowerCodeTm: 
+            type: string
+            example: VN004-00003234-001-1001
+          TowerName: 
+            type: string
+            example: Опора 1
   parameters:
       limit:
         name: limit
