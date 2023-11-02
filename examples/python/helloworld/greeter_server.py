@@ -89,7 +89,7 @@ class Fibonacci(helloworld_pb2_grpc.FibonacciServicer):
     return helloworld_pb2.NumberInt(value=result)
 
 class SqlQuare(helloworld_pb2_grpc.SqlQuareServicer):
-  def Select(self, request, context):
+  def Select(self, request: helloworld_pb2.SqlReq, context):
     response = helloworld_pb2.SqlResp
     response.value = db_conect.select(request.quare)
     return response
