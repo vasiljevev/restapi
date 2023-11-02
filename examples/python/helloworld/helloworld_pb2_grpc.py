@@ -361,3 +361,224 @@ class Calculator(object):
             helloworld__pb2.CalcResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class FibonacciStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.AtIndex = channel.unary_unary(
+                '/helloworld.Fibonacci/AtIndex',
+                request_serializer=helloworld__pb2.NumberInt.SerializeToString,
+                response_deserializer=helloworld__pb2.NumberInt.FromString,
+                )
+        self.GetSequence = channel.unary_stream(
+                '/helloworld.Fibonacci/GetSequence',
+                request_serializer=helloworld__pb2.NumberInt.SerializeToString,
+                response_deserializer=helloworld__pb2.NumberInt.FromString,
+                )
+        self.SumIndicies = channel.stream_unary(
+                '/helloworld.Fibonacci/SumIndicies',
+                request_serializer=helloworld__pb2.NumberInt.SerializeToString,
+                response_deserializer=helloworld__pb2.NumberInt.FromString,
+                )
+        self.StreamSequence = channel.stream_stream(
+                '/helloworld.Fibonacci/StreamSequence',
+                request_serializer=helloworld__pb2.NumberInt.SerializeToString,
+                response_deserializer=helloworld__pb2.NumberInt.FromString,
+                )
+
+
+class FibonacciServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def AtIndex(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetSequence(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SumIndicies(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StreamSequence(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_FibonacciServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'AtIndex': grpc.unary_unary_rpc_method_handler(
+                    servicer.AtIndex,
+                    request_deserializer=helloworld__pb2.NumberInt.FromString,
+                    response_serializer=helloworld__pb2.NumberInt.SerializeToString,
+            ),
+            'GetSequence': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetSequence,
+                    request_deserializer=helloworld__pb2.NumberInt.FromString,
+                    response_serializer=helloworld__pb2.NumberInt.SerializeToString,
+            ),
+            'SumIndicies': grpc.stream_unary_rpc_method_handler(
+                    servicer.SumIndicies,
+                    request_deserializer=helloworld__pb2.NumberInt.FromString,
+                    response_serializer=helloworld__pb2.NumberInt.SerializeToString,
+            ),
+            'StreamSequence': grpc.stream_stream_rpc_method_handler(
+                    servicer.StreamSequence,
+                    request_deserializer=helloworld__pb2.NumberInt.FromString,
+                    response_serializer=helloworld__pb2.NumberInt.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'helloworld.Fibonacci', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class Fibonacci(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def AtIndex(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/helloworld.Fibonacci/AtIndex',
+            helloworld__pb2.NumberInt.SerializeToString,
+            helloworld__pb2.NumberInt.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSequence(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/helloworld.Fibonacci/GetSequence',
+            helloworld__pb2.NumberInt.SerializeToString,
+            helloworld__pb2.NumberInt.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SumIndicies(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/helloworld.Fibonacci/SumIndicies',
+            helloworld__pb2.NumberInt.SerializeToString,
+            helloworld__pb2.NumberInt.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StreamSequence(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/helloworld.Fibonacci/StreamSequence',
+            helloworld__pb2.NumberInt.SerializeToString,
+            helloworld__pb2.NumberInt.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class SqlQuareStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Select = channel.unary_unary(
+                '/helloworld.SqlQuare/Select',
+                request_serializer=helloworld__pb2.SqlReq.SerializeToString,
+                response_deserializer=helloworld__pb2.SqlResp.FromString,
+                )
+
+
+class SqlQuareServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def Select(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_SqlQuareServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Select': grpc.unary_unary_rpc_method_handler(
+                    servicer.Select,
+                    request_deserializer=helloworld__pb2.SqlReq.FromString,
+                    response_serializer=helloworld__pb2.SqlResp.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'helloworld.SqlQuare', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class SqlQuare(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Select(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/helloworld.SqlQuare/Select',
+            helloworld__pb2.SqlReq.SerializeToString,
+            helloworld__pb2.SqlResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -69,3 +69,27 @@ service Calculator {
 
 }
 
+service Fibonacci {
+    rpc AtIndex(NumberInt) returns (NumberInt);
+    rpc GetSequence(NumberInt) returns (stream NumberInt);
+    rpc SumIndicies(stream NumberInt) returns (NumberInt);
+    rpc StreamSequence(stream NumberInt) returns (stream NumberInt);
+}
+
+
+message NumberInt {
+    int32 value = 1;
+}
+
+message SqlReq {
+    string quare = 1;
+}
+
+message SqlResp {
+    string resp = 1;
+}
+
+
+service SqlQuare {
+    rpc Select(SqlReq) returns (SqlResp) {}
+}

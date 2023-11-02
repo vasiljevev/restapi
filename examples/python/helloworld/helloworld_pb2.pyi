@@ -39,3 +39,21 @@ class CalcResult(_message.Message):
     valueIn2: float
     Result: float
     def __init__(self, valueIn1: _Optional[float] = ..., valueIn2: _Optional[float] = ..., Result: _Optional[float] = ...) -> None: ...
+
+class NumberInt(_message.Message):
+    __slots__ = ["value"]
+    VALUE_FIELD_NUMBER: _ClassVar[int]
+    value: int
+    def __init__(self, value: _Optional[int] = ...) -> None: ...
+
+class SqlReq(_message.Message):
+    __slots__ = ["quare"]
+    QUARE_FIELD_NUMBER: _ClassVar[int]
+    quare: str
+    def __init__(self, quare: _Optional[str] = ...) -> None: ...
+
+class SqlResp(_message.Message):
+    __slots__ = ["resp"]
+    RESP_FIELD_NUMBER: _ClassVar[int]
+    resp: str
+    def __init__(self, resp: _Optional[str] = ...) -> None: ...
