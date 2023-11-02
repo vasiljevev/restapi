@@ -39,9 +39,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Consumers'
+                $ref: '#/components/schemas/Consumers'
         '400':
           description: не верные параметры сервиса или объекта запроса
         '429':
@@ -79,9 +77,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ServiceLocation'
+                $ref: '#/components/responses/Consumers_responses'
         '400':
           description: не верные параметры сервиса или объекта запроса
         '429':
@@ -147,170 +143,170 @@ components:
       Consumers:
         description: 2.1 Сервис по запросу ПТК АСТУ возвращает данные из КИС Баланс о созданных / измененных / удаленных объектах потребителя за заданный период времени по заданным районам, типам потребителей
         type: array
-        items: 
+        items:
           type: object
-          properties: 
-            ActionType: 
+          properties:
+            ActionType:
               type: string
               example: INSERT
-            ConsumerId: 
+            ConsumerId:
               type: string
               example: 345435345
-            ConsumerName: 
+            ConsumerName:
               type: string
               example: Голованова Надежда Фёдоровна
-            ConsumerType: 
+            ConsumerType:
               type: string
               example: ФЛ
-            Contract: 
+            Contract:
               type: string
               example: 10-132344
-            RequetsNumber: 
+            RequetsNumber:
               type: string
               example: МС/103/13234234/12
-            ServiceLocationId: 
+            ServiceLocationId:
               type: string
               example: 23244322
-            Name: 
+            Name:
               type: string
               example: обл Московская , р-н Истринский, г Истра, д.1
-            OrganizationId: 
+            OrganizationId:
               type: string
               example: 2308
-            ObjectStatus: 
+            ObjectStatus:
               type: string
               example: Действующий
-            FiasId: 
+            FiasId:
               type: string
               example: b749c3e6-39df-45ae-918f-a5e6c8abb54e
-            Address: 
+            Address:
               type: string
               example: обл Московская , р-н Истринский, г Истра, д.1
-            Region: 
+            Region:
               type: string
               example: Московская обл.
-            District: 
+            District:
               type: string
               example: Истринский р-н
-            City: 
+            City:
               type: string
               example: г. Истра
-            Street: 
+            Street:
               type: string
               example: ул. Усадебная
-            House: 
+            House:
               type: string
-              example: д.1 
-            Room: 
+              example: д.1
+            Room:
               type: string
               example: кв. 47
-            Remark: 
+            Remark:
               type: string
               example: Примечание к адресу
-            Cadaster: 
+            Cadaster:
               type: string
               example: 23:12323:11
-            MaxPower: 
+            MaxPower:
               type: string
               example: 0.23
-            ReliabilityCategory: 
+            ReliabilityCategory:
               type: string
               example: 3
-            Phone: 
+            Phone:
               type: string
               example: 89629991999
-            ResidentsCount: 
+            ResidentsCount:
               type: string
               example: 12
-            ServiceDispCategory: 
+            ServiceDispCategory:
               type: string
               example: Частный дом
-            NumOfStoreys: 
+            NumOfStoreys:
               type: string
               example: 2
-            StandByCapacity: 
+            StandByCapacity:
               type: string
               example: 0
-            Significance: 
+            Significance:
               type: string
               example: 33
-            ServiceContingencyCatagory: 
+            ServiceContingencyCatagory:
               type: string
               example: Непроизводственные потребители
-            InChargeFullName: 
+            InChargeFullName:
               type: string
               example: Иванов И.И.
-            EmergencyPowerReserve: 
+            EmergencyPowerReserve:
               type: string
               example: 0.22
-            TechnoPowerReserve: 
+            TechnoPowerReserve:
               type: string
               example: 265
-            TechnoPowerReserveDuration: 
+            TechnoPowerReserveDuration:
               type: string
               example: number
-            Geometry: 
+            Geometry:
               $ref: '#/components/schemas/Geometry'
-            UsagePoints: 
+            UsagePoints:
               type: array
-              items: 
+              items:
                 type: object
-                properties: 
-                  ActionType: 
+                properties:
+                  ActionType:
                     type: string
                     example: INSERT
-                  UsagePointID: 
+                  UsagePointID:
                     type: string
                     example: 1233455
-                  Name: 
+                  Name:
                     type: string
                     example: Описание точки поставки
-                  OrganizationID: 
+                  OrganizationID:
                     type: string
                     example: 2308
-                  IsSDP: 
+                  IsSDP:
                     type: boolean
                     example: true
-                  VoltageLevel: 
+                  VoltageLevel:
                     type: string
                     example: НН
-                  VoltageClass: 
+                  VoltageClass:
                     type: string
                     example: 0.4
-                  ServiceLocationID: 
+                  ServiceLocationID:
                     type: string
                     example: 1233443
-                  SubstationCodeTm: 
+                  SubstationCodeTm:
                     type: string
                     example: TP010-00032333
-                  SubstationName: 
+                  SubstationName:
                     type: string
                     example: ТП 3004
-                  TransformerName: 
+                  TransformerName:
                     type: string
                     example: Т-1
-                  BayCodeTm: 
+                  BayCodeTm:
                     type: string
                     example: TP010-00032333-16-01-01
-                  BayName: 
+                  BayName:
                     type: string
                     example: яч. 1 ф. ВЛ 0,4 кВ
-                  LineCodeTm: 
+                  LineCodeTm:
                     type: string
                     example: VN004-00003234
-                  LineName: 
+                  LineName:
                     type: string
                     example: ВЛ 0,4 кВ 1
-                  TowerCodeTm: 
+                  TowerCodeTm:
                     type: string
                     example: VN004-00003234-001-1001
-                  TowerName: 
+                  TowerName:
                     type: string
                     example: Опора 1
-                  Remark: 
+                  Remark:
                     type: string
                     example: На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004
-                  Geometry: 
+                  Geometry:
                     $ref: '#/components/schemas/Geometry'
       Disconnection_Reconnection:
         description: 4.1 Сервис по запросу ПТК АСТУ возвращает из КИС Баланс данные о введенных ограничениях / возобновлении подачи ээ по указанным районам, созданные / измененные / удаленные за период Date_begin и Date_end
@@ -829,6 +825,13 @@ components:
           TowerName: 
             type: string
             example: Опора 1
+  responses:
+    Consumers_responses:
+      description: "что то новенькое"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Consumers'
   parameters:
       limit:
         name: limit
