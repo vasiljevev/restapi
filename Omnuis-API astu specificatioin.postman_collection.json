@@ -1,0 +1,932 @@
+{
+	"info": {
+		"_postman_id": "eea0bfc5-6807-4279-9f91-0f469dbc3328",
+		"name": "Omnuis-API astu specificatioin",
+		"description": "Интеграционный сервис АИС КИС Баланс\n\nContact Support:\n Name: Поддержка API\n Email: e-vasilyev@it-serv.ru",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19533182"
+	},
+	"item": [
+		{
+			"name": "astu",
+			"item": [
+				{
+					"name": "export",
+					"item": [
+						{
+							"name": "Запрос поиска объектов",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"astu",
+										"export"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "кол-во элементов от начала отсчета"
+										},
+										{
+											"key": "offset",
+											"value": "<integer>",
+											"description": "индекс начала отчета"
+										}
+									]
+								},
+								"description": "Запрос поиска объектов по заданному сервису"
+							},
+							"response": [
+								{
+									"name": "результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"ActionType\": \"INSERT\",\n    \"ConsumerId\": \"345435345\",\n    \"ConsumerName\": \"Голованова Надежда Фёдоровна\",\n    \"ConsumerType\": \"ФЛ\",\n    \"Contract\": \"10-132344\",\n    \"RequetsNumber\": \"МС/103/13234234/12\",\n    \"ServiceLocationId\": \"23244322\",\n    \"Name\": \"обл Московская , р-н Истринский, г Истра, д.1\",\n    \"OrganizationId\": \"2308\",\n    \"ObjectStatus\": \"Действующий\",\n    \"FiasId\": \"b749c3e6-39df-45ae-918f-a5e6c8abb54e\",\n    \"Address\": \"обл Московская , р-н Истринский, г Истра, д.1\",\n    \"Region\": \"Московская обл.\",\n    \"District\": \"Истринский р-н\",\n    \"City\": \"г. Истра\",\n    \"Street\": \"ул. Усадебная\",\n    \"House\": \"д.1\",\n    \"Room\": \"кв. 47\",\n    \"Remark\": \"Примечание к адресу\",\n    \"Cadaster\": \"23:12323:11\",\n    \"MaxPower\": \"0.23\",\n    \"ReliabilityCategory\": \"3\",\n    \"Phone\": \"89629991999\",\n    \"ResidentsCount\": \"12\",\n    \"ServiceDispCategory\": \"Частный дом\",\n    \"NumOfStoreys\": \"2\",\n    \"StandByCapacity\": \"0\",\n    \"Significance\": \"33\",\n    \"ServiceContingencyCatagory\": \"Непроизводственные потребители\",\n    \"InChargeFullName\": \"Иванов И.И.\",\n    \"EmergencyPowerReserve\": \"0.22\",\n    \"TechnoPowerReserve\": \"265\",\n    \"TechnoPowerReserveDuration\": \"number\",\n    \"Geometry\": {\n      \"Type\": \"Point\",\n      \"Coordinates\": [\n        {\n          \"X\": \"54,547856\",\n          \"Y\": \"63,547856\"\n        }\n      ]\n    },\n    \"UsagePoints\": [\n      {\n        \"ActionType\": \"INSERT\",\n        \"UsagePointID\": \"1233455\",\n        \"Name\": \"Описание точки поставки\",\n        \"OrganizationID\": \"2308\",\n        \"IsSDP\": true,\n        \"VoltageLevel\": \"НН\",\n        \"VoltageClass\": \"0.4\",\n        \"ServiceLocationID\": \"1233443\",\n        \"SubstationCodeTm\": \"TP010-00032333\",\n        \"SubstationName\": \"ТП 3004\",\n        \"TransformerName\": \"Т-1\",\n        \"BayCodeTm\": \"TP010-00032333-16-01-01\",\n        \"BayName\": \"яч. 1 ф. ВЛ 0,4 кВ\",\n        \"LineCodeTm\": \"VN004-00003234\",\n        \"LineName\": \"ВЛ 0,4 кВ 1\",\n        \"TowerCodeTm\": \"VN004-00003234-001-1001\",\n        \"TowerName\": \"Опора 1\",\n        \"Remark\": \"На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004\",\n        \"Geometry\": {\n          \"Type\": \"Point\",\n          \"Coordinates\": [\n            {\n              \"X\": \"54,547856\",\n              \"Y\": \"63,547856\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n]"
+								},
+								{
+									"name": "витрину с данными не заполена или изменений нет",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "не верные параметры сервиса или объекта запроса",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "JSON формируется больше 1  мин",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Request Timeout",
+									"code": 408,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Conflict",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "АСТУ сформировало запросов больше чем описано в требованиях",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Params\": {\n    \"ConsumptionType\": \"<string>\",\n    \"DeviceType\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Date_begin\": \"<string>\",\n    \"Date_end\": \"<string>\",\n    \"UsagePointID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"DeviceIdID\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"SystemState\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/export?limit=<integer>&offset=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"export"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "<integer>",
+													"description": "кол-во элементов от начала отсчета"
+												},
+												{
+													"key": "offset",
+													"value": "<integer>",
+													"description": "индекс начала отчета"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "import",
+					"item": [
+						{
+							"name": "Отправка объектов на обработку",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/astu/import",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"astu",
+										"import"
+									]
+								},
+								"description": "Отправка объектов на обработку"
+							},
+							"response": [
+								{
+									"name": "результаты поиска по запросу - определяются проектным решением для каждого сервиса индивидуально",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"description\": \"что то новенькое\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {}\n    }\n  }\n}"
+								},
+								{
+									"name": "витрину с данными не заполена или изменений нет",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "не верные параметры сервиса или объекта запроса",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "JSON формируется больше 1  мин",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Request Timeout",
+									"code": 408,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Conflict",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "АСТУ сформировало запросов больше чем описано в требованиях",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"ConsumerId\": \"<string>\",\n  \"ServiceLocationId\": \"<string>\",\n  \"Geometry\": {\n    \"Type\": \"<string>\",\n    \"Coordinates\": [\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      },\n      {\n        \"X\": \"<number>\",\n        \"Y\": \"<number>\"\n      }\n    ]\n  },\n  \"Service\": {\n    \"ServiceType\": \"<string>\",\n    \"Filial\": \"<string>\",\n    \"Area\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"Address\": {\n    \"Address\": \"<string>\",\n    \"Region\": \"<string>\",\n    \"District\": \"<string>\",\n    \"City\": \"<string>\",\n    \"Street\": \"<string>\",\n    \"House\": \"<string>\"\n  },\n  \"Cadatster\": {\n    \"Cadaster\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/astu/import",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"astu",
+												"import"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://{{baseUrl}}/api"
+		}
+	]
+}
