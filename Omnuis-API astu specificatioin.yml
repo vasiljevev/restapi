@@ -335,6 +335,7 @@ components:
                   example: string
                 Date: 
                   type: string
+                  format: date
                   example: date
                 Area: 
                   type: string
@@ -432,6 +433,7 @@ components:
                     example: string
                   Date: 
                     type: string
+                    format: date
                     example: date
                   Area: 
                     type: string
@@ -628,10 +630,12 @@ components:
             properties:
               Date_begin:
                 type: string
+                format: date
                 example: 2023-03-01
                 description: Начальная дата анализа данных по потребителям
               Date_end:
                 type: string
+                format: date
                 example: 2023-03-01
                 description: Начальная дата анализа данных по потребителям
       EndDevice_request_body:
@@ -658,10 +662,12 @@ components:
                   description: Тип прибора (1 - интегральный счетчик 2 - интервальный счетчик 3 - ТТ 4 - ТН)
               Date_begin:
                 type: string
+                format: date
                 example: 2023-03-01
                 description: Начальная дата анализа данных по потребителям
               Date_end:
                 type: string
+                format: date
                 example: 2023-03-01
                 description: Начальная дата анализа данных по потребителям
               UsagePointID:
@@ -700,10 +706,12 @@ components:
                 description: Тип потребителя (ФЛ, ЮЛ) из справочника КИС Баланс
               Date_begin:
                 type: string
+                format: date
                 example: 2023-03-01
                 description: Начальная дата анализа данных по потребителям
               Date_end:
                 type: string
+                format: date
                 example: 2023-03-01
                 description: Конечная дата анализа данных по потребителям
               ConsumerID:
