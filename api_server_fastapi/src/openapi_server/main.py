@@ -13,7 +13,7 @@
 
 from fastapi import FastAPI
 
-from openapi_server.apis.astu_api import router as AstuApiRouter
+from api_server_fastapi.src.openapi_server.apis.astu_api import router as AstuApiRouter
 
 app = FastAPI(
     title="Omnuis-API astu specificatioin",

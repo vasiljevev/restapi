@@ -2,9 +2,9 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from openapi_server.models.consumers_inner import ConsumersInner
-from openapi_server.models.end_device_request_body import EndDeviceRequestBody
-from openapi_server.models.service_location import ServiceLocation
+from api_server_fastapi.src.openapi_server.models.consumers_inner import ConsumersInner
+from api_server_fastapi.src.openapi_server.models.end_device_request_body import EndDeviceRequestBody
+from api_server_fastapi.src.openapi_server.models.service_location import ServiceLocation
 
 
 class BaseAstuApi:

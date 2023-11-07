@@ -4,8 +4,8 @@ from typing import Dict, List  # noqa: F401
 import importlib
 import pkgutil
 
-from openapi_server.apis.astu_api_base import BaseAstuApi
-import openapi_server.impl
+from api_server_fastapi.src.openapi_server.apis.astu_api_base import BaseAstuApi
+import api_server_fastapi.src.openapi_server.impl
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -21,15 +21,15 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from openapi_server.models.consumers_inner import ConsumersInner
-from openapi_server.models.end_device_request_body import EndDeviceRequestBody
-from openapi_server.models.service_location import ServiceLocation
+from api_server_fastapi.src.openapi_server.models.extra_models import TokenModel  # noqa: F401
+from api_server_fastapi.src.openapi_server.models.consumers_inner import ConsumersInner
+from api_server_fastapi.src.openapi_server.models.end_device_request_body import EndDeviceRequestBody
+from api_server_fastapi.src.openapi_server.models.service_location import ServiceLocation
 
 
 router = APIRouter()
 
-ns_pkg = openapi_server.impl
+ns_pkg = api_server_fastapi.src.openapi_server.impl
 for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     importlib.import_module(name)
 
