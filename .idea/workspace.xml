@@ -5,7 +5,102 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e870cb1-958f-4201-978c-f352b9763dcf" name="Changes" comment="year">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.github/workflows/python.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.gitlab-ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.openapi-generator-ignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.openapi-generator/FILES" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.openapi-generator/VERSION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/AstuApi.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ConsumersInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ConsumersInnerUsagePointsInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ConsumersRequestBody.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ConsumersRequestBodyParams.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/DisconnectionReconnection.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/DisconnectionReconnectionDisconnectionListInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/DisconnectionReconnectionDisconnectionListInnerUsagePointsInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/DisconnectionReconnectionReconnectionListInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/DisconnectionReconnectionRequestBody.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/DisconnectionReconnectionRequestBodyParams.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/EndDeviceRequestBody.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/EndDeviceRequestBodyParams.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/EndDevicesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/EndDevicesInnerMeasurePointsInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/Geometry.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/GeometryCoordinatesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/Service.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ServiceLocation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ServiceLocationAddress.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/ServiceLocationCadatster.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/docs/UsagePoint.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/git_push.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/api/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/api/astu_api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/api_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/api_response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/configuration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/consumers_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/consumers_inner_usage_points_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/consumers_request_body.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/consumers_request_body_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/disconnection_reconnection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/disconnection_reconnection_disconnection_list_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/disconnection_reconnection_disconnection_list_inner_usage_points_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/disconnection_reconnection_reconnection_list_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/disconnection_reconnection_request_body.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/disconnection_reconnection_request_body_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/end_device_request_body.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/end_device_request_body_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/end_devices_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/end_devices_inner_measure_points_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/geometry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/geometry_coordinates_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/service_location.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/service_location_address.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/service_location_cadatster.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/models/usage_point.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/py.typed" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/openapi_client/rest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/setup.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test-requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_astu_api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_consumers_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_consumers_inner_usage_points_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_consumers_request_body.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_consumers_request_body_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_disconnection_reconnection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_disconnection_reconnection_disconnection_list_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_disconnection_reconnection_disconnection_list_inner_usage_points_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_disconnection_reconnection_reconnection_list_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_disconnection_reconnection_request_body.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_disconnection_reconnection_request_body_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_end_device_request_body.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_end_device_request_body_params.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_end_devices_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_end_devices_inner_measure_points_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_geometry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_geometry_coordinates_inner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_service_location.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_service_location_address.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_service_location_cadatster.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/test/test_usage_point.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_gen/tox.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/restapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/restapi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Omnuis-API astu specificatioin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Omnuis_API_astu_specificatioin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,17 +159,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/Users/admin/Documents/github/restapi"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.db_conect (1)">
     <configuration name="db_conect (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="restapi" />
