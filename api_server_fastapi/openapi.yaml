@@ -1,0 +1,1135 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: e-vasilyev@it-serv.ru
+    name: Поддержка API
+    url: https://www.example.com/support
+  description: Интеграционный сервис АИС КИС Баланс
+  title: Omnuis-API astu specificatioin
+  version: "2.0"
+servers:
+- description: основной интеграционный сервис
+  url: "https://{baseUrl}/api"
+tags:
+- description: АИС Карта Мощности
+  name: astu
+paths:
+  /astu/export:
+    description: Запрос поиска объектов по заданному сервису
+    post:
+      description: Запрос поиска объектов по заданному сервису
+      operationId: SearchObjects
+      parameters:
+      - description: кол-во элементов от начала отсчета
+        example: 0
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          minimum: 0
+          type: integer
+        style: form
+      - description: индекс начала отчета
+        example: 0
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          format: int32
+          minimum: 0
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndDevice_request_body'
+        description: Параметры обращения к сервису - определяются проектным решением
+          для каждого сервиса индивидуально
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumers'
+          description: результаты поиска по запросу - определяются проектным решением
+            для каждого сервиса индивидуально
+        "400":
+          description: не верные параметры сервиса или объекта запроса
+        "429":
+          description: АСТУ сформировало запросов больше чем описано в требованиях
+        "204":
+          description: витрину с данными не заполена или изменений нет
+        "408":
+          description: JSON формируется больше 1  мин
+        "500":
+          description: Server Error
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+      summary: Запрос поиска объектов
+      tags:
+      - astu
+  /astu/import:
+    description: Отправка объектов на обработку
+    post:
+      description: Отправка объектов на обработку
+      operationId: ProcessObjects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceLocation'
+        description: Параметры обращения к сервису - определяются проектным решением
+          для каждого сервиса индивидуально
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumers'
+          description: результаты поиска по запросу - определяются проектным решением
+            для каждого сервиса индивидуально
+        "400":
+          description: не верные параметры сервиса или объекта запроса
+        "429":
+          description: АСТУ сформировало запросов больше чем описано в требованиях
+        "204":
+          description: витрину с данными не заполена или изменений нет
+        "408":
+          description: JSON формируется больше 1  мин
+        "500":
+          description: Server Error
+        "409":
+          description: Conflict
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+      summary: Отправка объектов на обработку
+      tags:
+      - astu
+components:
+  parameters:
+    limit:
+      description: кол-во элементов от начала отсчета
+      example: 0
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        format: int32
+        minimum: 0
+        type: integer
+      style: form
+    offset:
+      description: индекс начала отчета
+      example: 0
+      explode: true
+      in: query
+      name: offset
+      required: false
+      schema:
+        format: int32
+        minimum: 0
+        type: integer
+      style: form
+  responses:
+    Consumers_responses:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Consumers'
+      description: что то новенькое
+  schemas:
+    Consumers:
+      description: "2.1 Сервис по запросу ПТК АСТУ возвращает данные из КИС Баланс\
+        \ о созданных / измененных / удаленных объектах потребителя за заданный пе\
+        риод времени по заданным районам, типам потребителей"
+      items:
+        $ref: '#/components/schemas/Consumers_inner'
+      type: array
+    Disconnection_Reconnection:
+      description: "4.1 Сервис по запросу ПТК АСТУ возвращает из КИС Баланс данные\
+        \ о введенных ограничениях / возобновлении подачи ээ по указанным районам\
+        , созданные / измененные / удаленные за период Date_begin и Date_end"
+      properties:
+        DisconnectionList:
+          description: Массив данных по отключениям
+          items:
+            $ref: '#/components/schemas/Disconnection_Reconnection_DisconnectionList_inner'
+          type: array
+        ReconnectionList:
+          description: Массив данных по возобновлению
+          items:
+            $ref: '#/components/schemas/Disconnection_Reconnection_ReconnectionList_inner'
+          type: array
+      type: object
+    EndDevices:
+      description: "5.1 Сервис по запросу ПТК АСТУ получает из КИС Баланс перечень\
+        \ приборов учета (коммерческого и технического учета) по принадлежности к\
+        \ орг.структуре, типу созданных / измененных / удаленных за заданный проме\
+        жуток времени"
+      items:
+        $ref: '#/components/schemas/EndDevices_inner'
+      type: array
+    Geometry:
+      example:
+        Type: Point
+        Coordinates:
+        - X: 0.8008281904610115
+          "Y": 6.027456183070403
+        - X: 0.8008281904610115
+          "Y": 6.027456183070403
+      properties:
+        Type:
+          example: Point
+          title: Type
+          type: string
+        Coordinates:
+          items:
+            $ref: '#/components/schemas/Geometry_Coordinates_inner'
+          title: Coordinates
+          type: array
+      title: Geometry
+      type: object
+    Service:
+      example:
+        Area:
+        - "23"
+        - "23"
+        ServiceType: Disconnection_Reconnection_list
+        Filial: "23"
+      properties:
+        ServiceType:
+          description: "Имя запрашиваемого сервиса Consumers, Disconnection_Reconnection_list,\
+            \ или EndDevices"
+          example: Disconnection_Reconnection_list
+          title: ServiceType
+          type: string
+        Filial:
+          description: Идентификатор филиала из справочника КИС Баланс
+          example: "23"
+          title: Filial
+          type: string
+        Area:
+          items:
+            description: Список районов из справочника КИС Баланс
+            example: "23"
+            type: string
+          title: Area
+          type: array
+      required:
+      - Area
+      - Filial
+      - ServiceType
+      title: Service
+      type: object
+    Disconnection_Reconnection_request_body:
+      description: 4.1 Параметры тела запроса для сервиса Disconnection/Reconnection
+      properties:
+        Service:
+          $ref: '#/components/schemas/Service'
+        Params:
+          $ref: '#/components/schemas/Disconnection_Reconnection_request_body_Params'
+      required:
+      - Params
+      - Service
+      type: object
+    EndDevice_request_body:
+      description: 5.1 Параметры тела запроса для сервиса EndDevice
+      properties:
+        Service:
+          $ref: '#/components/schemas/Service'
+        Params:
+          $ref: '#/components/schemas/EndDevice_request_body_Params'
+      required:
+      - Params
+      - Service
+      title: EndDevice_request_body
+      type: object
+    Consumers_request_body:
+      description: 2.1 Параметры тела запроса для сервиса Consumers
+      properties:
+        Service:
+          $ref: '#/components/schemas/Service'
+        Params:
+          $ref: '#/components/schemas/Consumers_request_body_Params'
+      required:
+      - Params
+      - Service
+      type: object
+    ServiceLocation:
+      description: 3.1 используется для передачи в КИС Баланс из ПТК АСТУ данных по
+        скорректированному местоположению ЭПУ потребителя
+      example:
+        Geometry:
+          Type: Point
+          Coordinates:
+          - X: 0.8008281904610115
+            "Y": 6.027456183070403
+          - X: 0.8008281904610115
+            "Y": 6.027456183070403
+        Address:
+          Address: "обл Московская\_, р-н Истринский, г Истра, д.1"
+          Region: Московская обл.
+          Street: ул. Усадебная
+          House: д.1
+          City: г. Истра
+          District: Истринский р-н
+        ServiceLocationId: "1233443"
+        ConsumerId: "4564566"
+        Service:
+          Area:
+          - "23"
+          - "23"
+          ServiceType: Disconnection_Reconnection_list
+          Filial: "23"
+        Cadatster:
+          Cadaster: 77:232423443:14
+      properties:
+        Service:
+          $ref: '#/components/schemas/Service'
+        ConsumerId:
+          description: Идентификатор Потребителя КИС Баланс
+          example: "4564566"
+          title: ConsumerId
+          type: string
+        ServiceLocationId:
+          description: Идентификатор ЭПУ КИС Баланс
+          example: "1233443"
+          title: ServiceLocationId
+          type: string
+        Address:
+          $ref: '#/components/schemas/ServiceLocation_Address'
+        Cadatster:
+          $ref: '#/components/schemas/ServiceLocation_Cadatster'
+        Geometry:
+          $ref: '#/components/schemas/Geometry'
+      required:
+      - ConsumerId
+      - Geometry
+      - Service
+      - ServiceLocationId
+      title: ServiceLocation
+      type: object
+    UsagePoint:
+      description: 3.2 Сервис используется для передачи в КИС Баланс из ПТК АСТУ данных
+        по скорректированной привязке потребителя к объекту электросети
+      properties:
+        Service:
+          $ref: '#/components/schemas/Service'
+        UsagePointID:
+          description: Идентификатор Точки поставки в КИС Баланс
+          example: "4564566"
+          type: string
+        ServiceLocationID:
+          description: Идентификатор ЭПУ КИС Баланс
+          example: "1233443"
+          type: string
+        SubstationCodeTm:
+          description: Код ТМ СУПА питающей подстанции (ТП/РП)
+          example: TP010-00032333
+          type: string
+        TransformerName:
+          description: Наименование питающего трансформатора
+          example: Т-1
+          type: string
+        BayCodeTm:
+          description: Код КМ СУПА ячейки присоединения питающего фидера
+          example: TP010-00032333-16-01-01
+          type: string
+        BayName:
+          example: "яч. 1 ф. ВЛ 0,4 кВ"
+          type: string
+        LineCodeTm:
+          example: VN004-00003234
+          type: string
+        LineName:
+          example: "ВЛ 0,4 кВ 1"
+          type: string
+        TowerCodeTm:
+          example: VN004-00003234-001-1001
+          type: string
+        TowerName:
+          example: Опора 1
+          type: string
+      required:
+      - Service
+      - SubstationCodeTm
+      - UsagePointID
+      type: object
+    Consumers_inner_UsagePoints_inner:
+      example:
+        TowerCodeTm: VN004-00003234-001-1001
+        ActionType: INSERT
+        VoltageLevel: НН
+        BayCodeTm: TP010-00032333-16-01-01
+        UsagePointID: "1233455"
+        BayName: "яч. 1 ф. ВЛ 0,4 кВ"
+        OrganizationID: "2308"
+        Name: Описание точки поставки
+        IsSDP: true
+        SubstationName: ТП 3004
+        LineCodeTm: VN004-00003234
+        LineName: "ВЛ 0,4 кВ 1"
+        Remark: "На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004"
+        Geometry:
+          Type: Point
+          Coordinates:
+          - X: 0.8008281904610115
+            "Y": 6.027456183070403
+          - X: 0.8008281904610115
+            "Y": 6.027456183070403
+        TowerName: Опора 1
+        ServiceLocationID: "1233443"
+        SubstationCodeTm: TP010-00032333
+        TransformerName: Т-1
+        VoltageClass: "0.4"
+      properties:
+        ActionType:
+          example: INSERT
+          title: ActionType
+          type: string
+        UsagePointID:
+          example: "1233455"
+          title: UsagePointID
+          type: string
+        Name:
+          example: Описание точки поставки
+          title: Name
+          type: string
+        OrganizationID:
+          example: "2308"
+          title: OrganizationID
+          type: string
+        IsSDP:
+          example: true
+          title: IsSDP
+          type: boolean
+        VoltageLevel:
+          example: НН
+          title: VoltageLevel
+          type: string
+        VoltageClass:
+          example: "0.4"
+          title: VoltageClass
+          type: string
+        ServiceLocationID:
+          example: "1233443"
+          title: ServiceLocationID
+          type: string
+        SubstationCodeTm:
+          example: TP010-00032333
+          title: SubstationCodeTm
+          type: string
+        SubstationName:
+          example: ТП 3004
+          title: SubstationName
+          type: string
+        TransformerName:
+          example: Т-1
+          title: TransformerName
+          type: string
+        BayCodeTm:
+          example: TP010-00032333-16-01-01
+          title: BayCodeTm
+          type: string
+        BayName:
+          example: "яч. 1 ф. ВЛ 0,4 кВ"
+          title: BayName
+          type: string
+        LineCodeTm:
+          example: VN004-00003234
+          title: LineCodeTm
+          type: string
+        LineName:
+          example: "ВЛ 0,4 кВ 1"
+          title: LineName
+          type: string
+        TowerCodeTm:
+          example: VN004-00003234-001-1001
+          title: TowerCodeTm
+          type: string
+        TowerName:
+          example: Опора 1
+          title: TowerName
+          type: string
+        Remark:
+          example: "На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004"
+          title: Remark
+          type: string
+        Geometry:
+          $ref: '#/components/schemas/Geometry'
+      title: Consumers_inner_UsagePoints_inner
+      type: object
+    Consumers_inner:
+      example:
+        ActionType: INSERT
+        Address: "обл Московская\_, р-н Истринский, г Истра, д.1"
+        ServiceContingencyCatagory: Непроизводственные потребители
+        OrganizationId: "2308"
+        StandByCapacity: "0"
+        Name: "обл Московская\_, р-н Истринский, г Истра, д.1"
+        Remark: Примечание к адресу
+        ObjectStatus: Действующий
+        Cadaster: 23:12323:11
+        ServiceLocationId: "23244322"
+        Phone: "89629991999"
+        Street: ул. Усадебная
+        ReliabilityCategory: "3"
+        ConsumerType: ФЛ
+        Room: кв. 47
+        Significance: "33"
+        UsagePoints:
+        - TowerCodeTm: VN004-00003234-001-1001
+          ActionType: INSERT
+          VoltageLevel: НН
+          BayCodeTm: TP010-00032333-16-01-01
+          UsagePointID: "1233455"
+          BayName: "яч. 1 ф. ВЛ 0,4 кВ"
+          OrganizationID: "2308"
+          Name: Описание точки поставки
+          IsSDP: true
+          SubstationName: ТП 3004
+          LineCodeTm: VN004-00003234
+          LineName: "ВЛ 0,4 кВ 1"
+          Remark: "На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004"
+          Geometry:
+            Type: Point
+            Coordinates:
+            - X: 0.8008281904610115
+              "Y": 6.027456183070403
+            - X: 0.8008281904610115
+              "Y": 6.027456183070403
+          TowerName: Опора 1
+          ServiceLocationID: "1233443"
+          SubstationCodeTm: TP010-00032333
+          TransformerName: Т-1
+          VoltageClass: "0.4"
+        - TowerCodeTm: VN004-00003234-001-1001
+          ActionType: INSERT
+          VoltageLevel: НН
+          BayCodeTm: TP010-00032333-16-01-01
+          UsagePointID: "1233455"
+          BayName: "яч. 1 ф. ВЛ 0,4 кВ"
+          OrganizationID: "2308"
+          Name: Описание точки поставки
+          IsSDP: true
+          SubstationName: ТП 3004
+          LineCodeTm: VN004-00003234
+          LineName: "ВЛ 0,4 кВ 1"
+          Remark: "На кабельных наконечниках отходящего фидера 0,4 кВ ф. 1 ТП-3004"
+          Geometry:
+            Type: Point
+            Coordinates:
+            - X: 0.8008281904610115
+              "Y": 6.027456183070403
+            - X: 0.8008281904610115
+              "Y": 6.027456183070403
+          TowerName: Опора 1
+          ServiceLocationID: "1233443"
+          SubstationCodeTm: TP010-00032333
+          TransformerName: Т-1
+          VoltageClass: "0.4"
+        ServiceDispCategory: Частный дом
+        ConsumerName: Голованова Надежда Фёдоровна
+        House: д.1
+        City: г. Истра
+        EmergencyPowerReserve: "0.22"
+        TechnoPowerReserveDuration: number
+        ResidentsCount: "12"
+        TechnoPowerReserve: "265"
+        Geometry:
+          Type: Point
+          Coordinates:
+          - X: 0.8008281904610115
+            "Y": 6.027456183070403
+          - X: 0.8008281904610115
+            "Y": 6.027456183070403
+        RequetsNumber: МС/103/13234234/12
+        NumOfStoreys: "2"
+        InChargeFullName: Иванов И.И.
+        ConsumerId: "345435345"
+        FiasId: b749c3e6-39df-45ae-918f-a5e6c8abb54e
+        Region: Московская обл.
+        MaxPower: "0.23"
+        Contract: 10-132344
+        District: Истринский р-н
+      properties:
+        ActionType:
+          example: INSERT
+          title: ActionType
+          type: string
+        ConsumerId:
+          example: "345435345"
+          title: ConsumerId
+          type: string
+        ConsumerName:
+          example: Голованова Надежда Фёдоровна
+          title: ConsumerName
+          type: string
+        ConsumerType:
+          example: ФЛ
+          title: ConsumerType
+          type: string
+        Contract:
+          example: 10-132344
+          title: Contract
+          type: string
+        RequetsNumber:
+          example: МС/103/13234234/12
+          title: RequetsNumber
+          type: string
+        ServiceLocationId:
+          example: "23244322"
+          title: ServiceLocationId
+          type: string
+        Name:
+          example: "обл Московская\_, р-н Истринский, г Истра, д.1"
+          title: Name
+          type: string
+        OrganizationId:
+          example: "2308"
+          title: OrganizationId
+          type: string
+        ObjectStatus:
+          example: Действующий
+          title: ObjectStatus
+          type: string
+        FiasId:
+          example: b749c3e6-39df-45ae-918f-a5e6c8abb54e
+          title: FiasId
+          type: string
+        Address:
+          example: "обл Московская\_, р-н Истринский, г Истра, д.1"
+          title: Address
+          type: string
+        Region:
+          example: Московская обл.
+          title: Region
+          type: string
+        District:
+          example: Истринский р-н
+          title: District
+          type: string
+        City:
+          example: г. Истра
+          title: City
+          type: string
+        Street:
+          example: ул. Усадебная
+          title: Street
+          type: string
+        House:
+          example: д.1
+          title: House
+          type: string
+        Room:
+          example: кв. 47
+          title: Room
+          type: string
+        Remark:
+          example: Примечание к адресу
+          title: Remark
+          type: string
+        Cadaster:
+          example: 23:12323:11
+          title: Cadaster
+          type: string
+        MaxPower:
+          example: "0.23"
+          title: MaxPower
+          type: string
+        ReliabilityCategory:
+          example: "3"
+          title: ReliabilityCategory
+          type: string
+        Phone:
+          example: "89629991999"
+          title: Phone
+          type: string
+        ResidentsCount:
+          example: "12"
+          title: ResidentsCount
+          type: string
+        ServiceDispCategory:
+          example: Частный дом
+          title: ServiceDispCategory
+          type: string
+        NumOfStoreys:
+          example: "2"
+          title: NumOfStoreys
+          type: string
+        StandByCapacity:
+          example: "0"
+          title: StandByCapacity
+          type: string
+        Significance:
+          example: "33"
+          title: Significance
+          type: string
+        ServiceContingencyCatagory:
+          example: Непроизводственные потребители
+          title: ServiceContingencyCatagory
+          type: string
+        InChargeFullName:
+          example: Иванов И.И.
+          title: InChargeFullName
+          type: string
+        EmergencyPowerReserve:
+          example: "0.22"
+          title: EmergencyPowerReserve
+          type: string
+        TechnoPowerReserve:
+          example: "265"
+          title: TechnoPowerReserve
+          type: string
+        TechnoPowerReserveDuration:
+          example: number
+          title: TechnoPowerReserveDuration
+          type: string
+        Geometry:
+          $ref: '#/components/schemas/Geometry'
+        UsagePoints:
+          items:
+            $ref: '#/components/schemas/Consumers_inner_UsagePoints_inner'
+          title: UsagePoints
+          type: array
+      title: Consumers_inner
+      type: object
+    Disconnection_Reconnection_DisconnectionList_inner_UsagePoints_inner:
+      properties:
+        ActionType:
+          example: string
+          title: ActionType
+          type: string
+        Name:
+          example: string
+          title: Name
+          type: string
+        OrganizationID:
+          example: string
+          title: OrganizationID
+          type: string
+        IsSDP:
+          example: boolean
+          title: IsSDP
+          type: string
+        VoltageLevel:
+          example: string
+          title: VoltageLevel
+          type: string
+        VoltageClass:
+          example: string
+          title: VoltageClass
+          type: string
+        ServiceLocationID:
+          example: string
+          title: ServiceLocationID
+          type: string
+        SubstationCodeTm:
+          example: string
+          title: SubstationCodeTm
+          type: string
+        SubstationName:
+          example: string
+          title: SubstationName
+          type: string
+        TransformerName:
+          example: string
+          title: TransformerName
+          type: string
+        BayCodeTm:
+          example: string
+          title: BayCodeTm
+          type: string
+        BayName:
+          example: string
+          title: BayName
+          type: string
+        LineCodeTm:
+          example: string
+          title: LineCodeTm
+          type: string
+        LineName:
+          example: string
+          title: LineName
+          type: string
+        TowerCodeTm:
+          example: string
+          title: TowerCodeTm
+          type: string
+        TowerName:
+          example: string
+          title: TowerName
+          type: string
+        Remark:
+          example: string
+          title: Remark
+          type: string
+        geometry:
+          $ref: '#/components/schemas/Geometry'
+      title: Disconnection_Reconnection_DisconnectionList_inner_UsagePoints_inner
+      type: object
+    Disconnection_Reconnection_DisconnectionList_inner:
+      properties:
+        ActionType:
+          example: string
+          title: ActionType
+          type: string
+        DiscconectionId:
+          example: string
+          title: DiscconectionId
+          type: string
+        Description:
+          example: string
+          title: Description
+          type: string
+        Type:
+          example: string
+          title: Type
+          type: string
+        Reason:
+          example: string
+          title: Reason
+          type: string
+        Date:
+          format: date
+          title: Date
+          type: string
+        Area:
+          example: string
+          title: Area
+          type: string
+        Initiator:
+          example: string
+          title: Initiator
+          type: string
+        Performer:
+          example: string
+          title: Performer
+          type: string
+        ConsumerId:
+          example: string
+          title: ConsumerId
+          type: string
+        UsagePoints:
+          items:
+            $ref: '#/components/schemas/Disconnection_Reconnection_DisconnectionList_inner_UsagePoints_inner'
+          title: UsagePoints
+          type: array
+      title: Disconnection_Reconnection_DisconnectionList_inner
+      type: object
+    Disconnection_Reconnection_ReconnectionList_inner:
+      properties:
+        ActionType:
+          example: string
+          title: ActionType
+          type: string
+        ReconnectionId:
+          example: string
+          title: ReconnectionId
+          type: string
+        DiscconectionId:
+          example: string
+          title: DiscconectionId
+          type: string
+        Description:
+          example: string
+          title: Description
+          type: string
+        Type:
+          example: string
+          title: Type
+          type: string
+        Reason:
+          example: string
+          title: Reason
+          type: string
+        Date:
+          format: date
+          title: Date
+          type: string
+        Area:
+          example: string
+          title: Area
+          type: string
+        Initiator:
+          example: string
+          title: Initiator
+          type: string
+        Performer:
+          example: string
+          title: Performer
+          type: string
+        ConsumerId:
+          example: string
+          title: ConsumerId
+          type: string
+        UsagePoints:
+          items:
+            $ref: '#/components/schemas/Disconnection_Reconnection_DisconnectionList_inner_UsagePoints_inner'
+          title: UsagePoints
+          type: array
+      title: Disconnection_Reconnection_ReconnectionList_inner
+      type: object
+    EndDevices_inner_MeasurePoints_inner:
+      properties:
+        id:
+          example: string
+          title: id
+          type: string
+        description:
+          example: string
+          title: description
+          type: string
+        type:
+          example: string
+          title: type
+          type: string
+      title: EndDevices_inner_MeasurePoints_inner
+      type: object
+    EndDevices_inner:
+      properties:
+        ActionType:
+          example: string
+          type: string
+        EndDeviceId:
+          example: string
+          type: string
+        Name:
+          example: string
+          type: string
+        OrganizationID:
+          example: string
+          type: string
+        DeviceType:
+          example: string
+          type: string
+        SerialNumber:
+          example: string
+          type: string
+        isAMR:
+          example: boolean
+          type: string
+        IsCommercial:
+          example: boolean
+          type: string
+        DeviceStatus:
+          example: string
+          type: string
+        BelongingType:
+          example: string
+          type: string
+        UsagePointID:
+          example: string
+          type: string
+        SubstationCodeTM:
+          example: string
+          type: string
+        BayCodeTM:
+          example: string
+          type: string
+        LineCodeTM:
+          example: string
+          type: string
+        TowerCodeTM:
+          example: string
+          type: string
+        DeviceLocation:
+          example: string
+          type: string
+        geometry:
+          $ref: '#/components/schemas/Geometry'
+        MeasurePoints:
+          items:
+            $ref: '#/components/schemas/EndDevices_inner_MeasurePoints_inner'
+          type: array
+      type: object
+    Geometry_Coordinates_inner:
+      example:
+        X: 0.8008281904610115
+        "Y": 6.027456183070403
+      properties:
+        X:
+          title: X
+          type: number
+        "Y":
+          title: "Y"
+          type: number
+      title: Geometry_Coordinates_inner
+      type: object
+    Disconnection_Reconnection_request_body_Params:
+      properties:
+        Date_begin:
+          description: Начальная дата анализа данных по потребителям
+          example: 2023-03-01
+          format: date
+          title: Date_begin
+          type: string
+        Date_end:
+          description: Начальная дата анализа данных по потребителям
+          example: 2023-03-01
+          format: date
+          title: Date_end
+          type: string
+      required:
+      - Date_begin
+      - Date_end
+      title: Disconnection_Reconnection_request_body_Params
+      type: object
+    EndDevice_request_body_Params:
+      properties:
+        ConsumptionType:
+          description: "Вид учета (flow - технический, estim - коммерческий)"
+          example: flow
+          title: ConsumptionType
+          type: string
+        DeviceType:
+          items:
+            description: Тип прибора (1 - интегральный счетчик 2 - интервальный счетчик
+              3 - ТТ 4 - ТН)
+            example: "1"
+            type: string
+          title: DeviceType
+          type: array
+        Date_begin:
+          description: Начальная дата анализа данных по потребителям
+          example: 2023-03-01
+          format: date
+          title: Date_begin
+          type: string
+        Date_end:
+          description: Начальная дата анализа данных по потребителям
+          example: 2023-03-01
+          format: date
+          title: Date_end
+          type: string
+        UsagePointID:
+          description: Массив идентификаторов точек поставки
+          items:
+            example: "22222222"
+            type: string
+          title: UsagePointID
+          type: array
+        DeviceIdID:
+          description: Массив идентификаторов приборов учета
+          items:
+            example: "10000012"
+            type: string
+          title: DeviceIdID
+          type: array
+        SystemState:
+          items:
+            description: Массив идентификаторо статусов для ЭПУ
+            example: "Действующий, Проект"
+            type: string
+          title: SystemState
+          type: array
+      title: EndDevice_request_body_Params
+      type: object
+    Consumers_request_body_Params:
+      properties:
+        type:
+          description: "Тип потребителя (ФЛ, ЮЛ) из справочника КИС Баланс"
+          example: ФЛ
+          title: type
+          type: string
+        Date_begin:
+          description: Начальная дата анализа данных по потребителям
+          example: 2023-03-01
+          format: date
+          title: Date_begin
+          type: string
+        Date_end:
+          description: Конечная дата анализа данных по потребителям
+          example: 2023-03-01
+          format: date
+          title: Date_end
+          type: string
+        ConsumerID:
+          items:
+            description: Массив идентификаторов потребителей
+            example: "10000012, 100000013"
+            type: string
+          title: ConsumerID
+          type: array
+        ServiceLocationID:
+          items:
+            description: Массив идентифкаторов ЭПУ
+            example: "20000012, 200000013"
+            type: string
+          title: ServiceLocationID
+          type: array
+        SystemState:
+          items:
+            description: Массив идентификаторо статусов для ЭПУ
+            example: "Действующий, Проект"
+            type: string
+          title: SystemState
+          type: array
+      title: Consumers_request_body_Params
+      type: object
+    ServiceLocation_Address:
+      description: Адресная информация
+      example:
+        Address: "обл Московская\_, р-н Истринский, г Истра, д.1"
+        Region: Московская обл.
+        Street: ул. Усадебная
+        House: д.1
+        City: г. Истра
+        District: Истринский р-н
+      properties:
+        Address:
+          description: Полный адрес (до дома)
+          example: "обл Московская\_, р-н Истринский, г Истра, д.1"
+          title: Address
+          type: string
+        Region:
+          description: Регион
+          example: Московская обл.
+          title: Region
+          type: string
+        District:
+          description: Район
+          example: Истринский р-н
+          title: District
+          type: string
+        City:
+          description: Город
+          example: г. Истра
+          title: City
+          type: string
+        Street:
+          description: Улица
+          example: ул. Усадебная
+          title: Street
+          type: string
+        House:
+          description: Дом
+          example: д.1
+          title: House
+          type: string
+      title: ServiceLocation_Address
+      type: object
+    ServiceLocation_Cadatster:
+      example:
+        Cadaster: 77:232423443:14
+      properties:
+        Cadaster:
+          description: Кадастровый номер
+          example: 77:232423443:14
+          title: Cadaster
+          type: string
+      title: ServiceLocation_Cadatster
+      type: object
