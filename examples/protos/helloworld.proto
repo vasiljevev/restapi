@@ -82,11 +82,11 @@ message NumberInt {
 }
 
 message SqlReq {
-    string quare = 1;
+    string message = 1;
 }
 
 message SqlResp {
-    string resp = 1;
+    string message = 1;
 }
 
 

@@ -20,7 +20,8 @@ import calculator
 import grpc
 import helloworld_pb2
 import helloworld_pb2_grpc
-import db_conect
+from sql_lite import select
+#import db_conect
 
 
 
@@ -76,22 +77,10 @@ class CalculatorServicer(helloworld_pb2_grpc.CalculatorServicer):
     response.valueIn2 = request.value2
     return response
 
-class Fibonacci(helloworld_pb2_grpc.FibonacciServicer):
-
-  def calculate(self, index):
-    a, b = 0, 1
-    for _ in range(index):
-      a, b = b, a + b
-    return a
-
-  def AtIndex(self, request: helloworld_pb2.NumberInt, context):
-    result = self.calculate(request.value)
-    return helloworld_pb2.NumberInt(value=result)
-
 class SqlQuare(helloworld_pb2_grpc.SqlQuareServicer):
   def Select(self, request, context):
-    response = helloworld_pb2.SqlResp
-    response.value = db_conect.select(request.quare)
+    response = helloworld_pb2.SqlResp()
+    response.message = select('SELECT name FROM sqlite_master')
     return response
 
 def serve():
@@ -99,7 +88,6 @@ def serve():
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
   helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
   helloworld_pb2_grpc.add_CalculatorServicer_to_server(CalculatorServicer(), server)
-  helloworld_pb2_grpc.add_FibonacciServicer_to_server(Fibonacci(), server)
   helloworld_pb2_grpc.add_SqlQuareServicer_to_server(SqlQuare(), server)
   server.add_insecure_port("[::]:" + port)
   server.start()

@@ -47,13 +47,13 @@ class NumberInt(_message.Message):
     def __init__(self, value: _Optional[int] = ...) -> None: ...
 
 class SqlReq(_message.Message):
-    __slots__ = ["quare"]
-    QUARE_FIELD_NUMBER: _ClassVar[int]
-    quare: str
-    def __init__(self, quare: _Optional[str] = ...) -> None: ...
+    __slots__ = ["message"]
+    MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    message: str
+    def __init__(self, message: _Optional[str] = ...) -> None: ...
 
 class SqlResp(_message.Message):
-    __slots__ = ["resp"]
-    RESP_FIELD_NUMBER: _ClassVar[int]
-    resp: str
-    def __init__(self, resp: _Optional[str] = ...) -> None: ...
+    __slots__ = ["message"]
+    MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    message: str
+    def __init__(self, message: _Optional[str] = ...) -> None: ...

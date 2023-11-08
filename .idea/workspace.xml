@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e870cb1-958f-4201-978c-f352b9763dcf" name="Changes" comment="year">
+      <change afterPath="$PROJECT_DIR$/examples/python/helloworld/ddd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/python/helloworld/sql_lite.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/protos/helloworld.proto" beforeDir="false" afterPath="$PROJECT_DIR$/examples/protos/helloworld.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/python/helloworld/greeter_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/python/helloworld/greeter_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/python/helloworld/helloworld_pb2.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/python/helloworld/helloworld_pb2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/python/helloworld/helloworld_pb2.pyi" beforeDir="false" afterPath="$PROJECT_DIR$/examples/python/helloworld/helloworld_pb2.pyi" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +81,7 @@
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.db_conect (1)">
+  <component name="RunManager" selected="Python.sql_lite">
     <configuration name="db_conect (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="restapi" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,8 +124,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="sql_lite" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="restapi" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples/python/helloworld" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/python/helloworld/sql_lite.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.sql_lite" />
         <item itemvalue="Python.db_conect (1)" />
         <item itemvalue="Python.db_conect" />
       </list>
