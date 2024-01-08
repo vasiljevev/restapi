@@ -5,3 +5,11 @@ https://github.com/joelparkerhenderson/architecture-decision-record
 https://github.com/adr/adr-manager
 
 https://adr.github.io/adr-manager/#/manager/vasiljevev/restapi/main/0002-test.md
+
+https://adr.github.io/
+
+https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html
+
+https://learn.microsoft.com/ru-ru/azure/well-architected/
+
+https://youtu.be/MJgOU_xFK-o?si=1S3x7WUV652D5Sed
